@@ -29,13 +29,6 @@
     width: 50%;
     margin-left: 180px;
 }
-/*GAMBIARRA DO BOTÃO DE SEARCH */
-
-#search-form button {
-    position: absolute;
-    top: 20px;
-    right: 400px;
-}
 
 #search-form .form-control {
     border: none;
@@ -88,6 +81,14 @@
     color: #0F5132;
     background-color: #D1E7DD;
     border-color: #BADCCC;
+}
+
+/*BOTÃO DE SEARCH */
+
+#search-form button {
+    position: absolute;
+    top: 20px;
+    right: 450px;
 }
 
 /* HOME */ /* HOME */ /* HOME */
@@ -175,6 +176,37 @@
 
 .edit-profile-page .botao {
     width: auto;
+}
+
+.email {
+    font-size: 14px;
+    color: red;
+}
+
+/* NEW MOVIE */ /* NEW MOVIE */ /* NEW MOVIE */
+
+.new-movie-container {
+    text-align: center;
+}
+
+#add-movie-form {
+    text-align: left;
+}
+
+.page-title:after {
+    content: "";
+    width: 300px;
+    border-bottom: 2px solid #f5c518;
+    display: block;
+    margin: 0 auto;
+    padding-top: 7px;
+}
+
+.movie-image-container{
+    height: 400px;
+    min-width: 200px;
+    background-position: center;
+    background-size: cover;
 }
 
 /* FOOTER */ /* FOOTER */ /* FOOTER */

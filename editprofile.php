@@ -34,6 +34,7 @@
                         <div class="form-group">
                             <label for="email">E-mail:</label>
                             <input class="form-control disabled" readonly type="text" name="email" id="email" placeholder="Digite seu novo e-mail" value="<?= $userData->email ?>">
+                            <p class="email">*E-mail não pode ser alterado.</p>
                         </div>
                         <input type="submit" class="botao" value="Alterar">
                     </div>
