@@ -2,6 +2,6 @@
 
     session_start();
 
-    $BASE_URL =  $_SERVER['SERVER NAME'] . dirname($_SERVER['REQUEST URI'] . "?") . "/";
+    $BASE_URL =  "http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['REQUEST_URI'] . "?") . "/";
     
 ?>
