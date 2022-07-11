@@ -108,6 +108,91 @@
 
     }
 
+  }else if($type == "update") {
+
+    $movie = new Movie();
+
+    $title = filter_input(INPUT_POST, "title");
+    $description = filter_input(INPUT_POST, "description");
+    $trailer = filter_input(INPUT_POST, "trailer");
+    $category = filter_input(INPUT_POST, "category");
+    $length = filter_input(INPUT_POST, "length");
+    $id = filter_input(INPUT_POST, "id");
+
+    $movieData = $movieDao->findById($id);
+
+    //verifica se encontrou o filme
+    if($movieData) {
+
+      //verificar se o filme é do usuário
+      if($movieData->users_id === $userData->id) {
+
+        if(!empty($title) && !empty($description) && !empty($category)) {
+
+          //edição de filme
+          $movieData->title = $title;
+          $movieData->description = $description;
+          $movieData->trailer = $trailer;
+          $movieData->category = $category;
+          $movieData->length = $length;
+
+          
+          //upload de imagem do filme
+          if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
+
+            $image = $_FILES["image"]; 
+            $imageTypes = ["image/jpg", "image/jpeg", "image/png"];
+            $jpgArray = ["image/jpg", "image/jpeg"];
+
+            if(in_array($image["type"], $imageTypes)) {
+
+              //checa se é JPEG
+              if(in_array($image["type"], $jpgArray)) {
+
+                $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+
+              } else{
+
+                //checa se é PNG
+                $imageFile = imagecreatefrompng($image["tmp_name"]);
+
+              }
+
+              $imageName = $movie->generateImageName();
+
+              imagejpeg($imageFile, "./img/movies/" . $imageName, 100);
+
+              $movieData->image = $imageName;
+
+            } else {
+
+              $message->setMessage("Tipo de imagem inválida. Insira PNG ou JPG", "error", "back");
+
+            }
+
+          }
+
+          $movieDao->update($movieData);
+
+        } else {
+
+          $message->setMessage("Você precisa adicionar pelo menos um Título, categoria e descrição!", "error", "back");
+
+        }
+
+      } else {
+
+        $message->setMessage("Informações inválidas.", "error", "index.php");
+
+      }
+
+
+    } else {
+
+      $message->setMessage("Informações inválidas.", "error", "index.php");
+
+    }
+
   } else {
 
     $message->setMessage("Informações inválidas.", "error", "index.php");

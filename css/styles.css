@@ -294,13 +294,56 @@
 
 .edit-profile-page .botao,
 #add-movie-container .card-btn,
-#review-form .botao {
+#review-form .botao,
+#edit-movie-form .botao{
     width: auto;
 }
 
 .email {
     font-size: 14px;
     color: red;
+}
+
+/* PROFILE */ /* PROFILE */ /* PROFILE */
+
+.profile-container {
+    justify-content: center;
+}
+
+.profile-image {
+    margin: 20px auto;
+}
+
+.about-title {
+    color: #CCC;
+}
+
+.profile-description {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.added-movies-container,
+.about-container {
+    padding-top: 20px;
+}
+
+.about-container {
+    text-align: center;
+    background-color: #333;
+    border-bottom: 3px solid #CCC;
+}
+
+.added-movies-container {
+    background-color: #333;
+}
+
+.added-movies-container .movies-container {
+    padding: 20px;
+}
+
+.added-movies-container .movie-card {
+    width: 31%;
 }
 
 /* NEW MOVIE */ /* NEW MOVIE */ /* NEW MOVIE */

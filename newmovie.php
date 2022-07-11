@@ -50,8 +50,7 @@
         </div>
         <input type="submit" class="botao" value="Adicionar Filme">
       </form>
-    </div>
-    
+    </div>  
   </div>
 
 <?php
