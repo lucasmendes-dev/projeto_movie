@@ -4,6 +4,7 @@
   require_once("models/Message.php");
 
   //Review DAO
+  require_once("dao/ReviewDAO.php");
 
   class MovieDAO implements MovieDAOInterface {
 
@@ -30,6 +31,13 @@
       $movie->category = $data["category"];
       $movie->length = $data["length"];
       $movie->users_id = $data["users_id"];
+
+      //recebe as ratings do filme
+      $reviewDao = new ReviewDAO($this->conn, $this->url);
+
+      $rating = $reviewDao->getRatings($movie->id);
+
+      $movie->rating = $rating;
 
       return $movie;
 
@@ -133,6 +141,23 @@
 
     public function findByTitle($title) {
 
+      $movies = [];
+
+      $stmt = $this->conn->prepare("SELECT * FROM movies WHERE title LIKE :title");
+
+      $stmt->bindValue(":title", '%'. $title . '%');
+      $stmt->execute();
+
+      if($stmt->rowCount() > 0) {
+
+        $moviesArray = $stmt->fetchAll();
+
+        foreach($moviesArray as $movie) {
+          $movies[] = $this->buildMovie($movie);
+        }
+      }
+
+      return $movies;
 
 
     }

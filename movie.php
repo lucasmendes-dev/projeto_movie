@@ -48,6 +48,9 @@
       $userOwnsMovie = true;
     }
 
+    //resgatar as reviews do filme
+    $alreadyReviewd = $reviewDao->hasAlreadyReviewed($id, $userData->id);
+
   }
 
   //resgatar as reviews do filme
@@ -55,8 +58,7 @@
   
 
 
-  //resgatar as reviews do filme
-  $alreadyReviewd = false;
+  
 
 ?>
 
@@ -69,7 +71,7 @@
         <span class="pipe"></span>
         <span><?= $movie->category ?></span>
         <span class="pipe"></span>
-        <span><i class="fas fa-star"></i> 9</span>
+        <span><i class="fas fa-star"></i> <?= $movie->rating ?></span>
       </p>
       <iframe src="<?= $movie->trailer ?>" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <p><?= $movie->description ?></p>
